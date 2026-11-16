@@ -1,0 +1,13 @@
+index=main sourcetype="XmlWinEventLog:Security" "<EventID>4625</EventID>"
+| rex field=_raw "Name='IpAddress'>(?<SourceIP>[^<]*)"
+| rex field=_raw "Name='TargetUserName'>(?<TargetUserName>[^<]*)"
+| where isnotnull(SourceIP)
+    AND SourceIP!=""
+    AND SourceIP!="-"
+    AND SourceIP!="127.0.0.1"
+    AND SourceIP!="::1"
+    AND isnotnull(TargetUserName)
+    AND TargetUserName!=""
+| stats count AS FailedAttempts by SourceIP TargetUserName host
+| where FailedAttempts >= 5
+| sort - FailedAttempts

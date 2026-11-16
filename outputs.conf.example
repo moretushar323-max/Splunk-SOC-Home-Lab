@@ -1,0 +1,6 @@
+# Example only. Replace SPLUNK_SERVER_IP with your Splunk receiver address.
+[tcpout]
+defaultGroup = splunk_receivers
+
+[tcpout:splunk_receivers]
+server = SPLUNK_SERVER_IP:9997

@@ -1,0 +1,15 @@
+# Example only. Enable these stanzas on the Windows Universal Forwarder.
+[WinEventLog://Application]
+disabled = 0
+index = main
+renderXml = true
+
+[WinEventLog://System]
+disabled = 0
+index = main
+renderXml = true
+
+[WinEventLog://Security]
+disabled = 0
+index = main
+renderXml = true
